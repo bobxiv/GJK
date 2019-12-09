@@ -11,18 +11,18 @@
 class ConvexHull2D
 {
 private:
-	void _GrahamScan(std::vector<Vertex2D> &P);
+    void _GrahamScan(std::vector<Vertex2D> &P);
 
-	void _Graham(std::vector<Vertex2D> &P);
+    void _Graham(std::vector<Vertex2D> &P);
 
-	static bool RigthTurn(const Vertex2D &c1, const Vertex2D &c2, const Vertex2D &c3);
+    static bool RigthTurn(const Vertex2D &c1, const Vertex2D &c2, const Vertex2D &c3);
 
 public:
-	enum Method{GrahamScan, Graham, DivideAndConquer};
+    enum Method{GrahamScan, Graham, DivideAndConquer};
 
-	ConvexHull2D(std::vector<Vertex2D> &P, const Method method);
+    ConvexHull2D(std::vector<Vertex2D> &P, const Method method);
 
-	void Dibujar(sf::RenderWindow &RW);
+    void Dibujar(sf::RenderWindow &RW);
 
-	std::vector<Vertex2D> CH;
+    std::vector<Vertex2D> CH;
 };

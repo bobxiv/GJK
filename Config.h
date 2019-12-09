@@ -13,11 +13,11 @@
 #if defined(DEBUG)
 #define INLINE inline
 #else
-	#if defined(FORCE_INLINE)
-	#define INLINE __forceinline
-	#else
-	#define INLINE inline
-	#endif
+    #if defined(FORCE_INLINE)
+    #define INLINE __forceinline
+    #else
+    #define INLINE inline
+    #endif
 #endif
 
 //--------------------------------------------------------------------------

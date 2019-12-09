@@ -6,7 +6,7 @@
 namespace GJK
 {
 
-	typedef double Real;
+    typedef double Real;
 
 };
 
