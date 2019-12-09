@@ -2,6 +2,8 @@
 
 Una implementación simple del algoritmo GJK junto con una aplicación pequeña para mostrar el proceso de cálculo a través de la suma de Minkowski.
 
+![App Capture](https://github.com/erojasfredini/GJK/blob/master/data/screeshot1.PNG)
+
 ## Tabla de Contenidos
 
 - [GJK](#gjk)
