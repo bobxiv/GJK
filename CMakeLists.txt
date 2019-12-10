@@ -16,3 +16,7 @@ set(LIBRARIES ${LIBRARIES} sfml-window sfml-system sfml-main sfml-graphics)
 file(GLOB GJK_SOURCES *.cpp *.h)
 add_executable(gjk ${GJK_SOURCES})
 target_link_libraries(gjk ${LIBRARIES})
+
+# Capetas de salida
+set_target_properties(gjk PROPERTIES PDB_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin/$<CONFIG>")
+set_target_properties(gjk PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin/$<CONFIG>")
