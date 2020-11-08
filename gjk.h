@@ -98,7 +98,7 @@ namespace GJK
 
             // Rota los vertices del poligono un angulo angRad (en radianes)
             // respecto al punto PointOfRotation
-            void Rotate(float angRad, Point& PointOfRotation);
+            void Rotate(float angRad, const Point& PointOfRotation);
 
             Point GetClosestPointToOrigin();
 
@@ -123,7 +123,7 @@ namespace GJK
     // si no, devuelve la distancia minima
     // entre ellos.
     // XXX Voy a tratar de hacerlo para 2d y
-    // rezar por que pasarlo a 3d no sea 
+    // rezar por que pasarlo a 3d no sea
     // mucho quilombo.
     #ifdef _DEBUG
     bool gjk_2dIntersection_Test(const Polygon &a, const Polygon &b, Polygon &interseccion);

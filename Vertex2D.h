@@ -1,11 +1,12 @@
 #pragma once
+#include <cmath>
 
 class Vertex2D
 {
 public:
 
     float x,y;
-    
+
     Vertex2D(float _x, float _y): x(_x), y(_y)
     {}
 

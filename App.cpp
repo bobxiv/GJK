@@ -1,6 +1,7 @@
 #include "gjk.h"
 #include "App.h"
 #include <iostream>
+#include <math.h>
 
 namespace GJK
 {
@@ -29,7 +30,7 @@ namespace GJK
         const float width = m_Camara.getSize().x;
         const float halfWidth = width / 2.0f;
         const float halfHeight = height / 2.0f;
-        
+
         drag_A = false;
         drag_B = false;
         hay_interseccion = false;
@@ -321,7 +322,11 @@ namespace GJK
 
         }else
         {
-            if( gjk_2dIntersection_Test(m_A, m_B, m_Interseccion) ) 
+#ifdef _DEBUG
+            if (gjk_2dIntersection_Test(m_A, m_B, m_Interseccion))
+#else
+            if( gjk_2dIntersection_Test(m_A, m_B) )
+#endif
             {
                 hay_interseccion = true;
                 m_ResultadoGJK = "Intersectan";
@@ -353,7 +358,7 @@ namespace GJK
         auto eje_x = sf::RectangleShape(sf::Vector2f(width, 1.0f));
         eje_x.setPosition(-width / 2.0f, 0.0f);
         eje_x.setFillColor(sf::Color::White);
-        
+
         auto eje_y = sf::RectangleShape(sf::Vector2f(1.0f, height));
         eje_y.setPosition(0.0f, -height / 2.0f);
         eje_y.setFillColor(sf::Color::White);
@@ -367,7 +372,7 @@ namespace GJK
             polyA.setPoint(k, sf::Vector2f(m_A(k).x, m_A(k).y));
         polyA.setFillColor(sf::Color::Blue);
         m_Window.draw(polyA);
-        
+
         sf::ConvexShape polyB;
         polyB.setPointCount(m_B.GetVertexCount());
         for(int k=0; k < m_B.GetVertexCount() ; ++k)
@@ -398,7 +403,7 @@ namespace GJK
         auto eje_x_mink = sf::RectangleShape(sf::Vector2f(width_Mink, 1.0f));
         eje_x_mink.setPosition(-height_Mink / 2.0f, 0.0f);
         eje_x_mink.setFillColor(sf::Color::White);
-        
+
         auto eje_y_mink = sf::RectangleShape(sf::Vector2f(1.0f, height_Mink));
         eje_y_mink.setPosition(0.0f, -width_Mink / 2.0f);
         eje_y_mink.setFillColor(sf::Color::White);
@@ -408,7 +413,7 @@ namespace GJK
 
         Polygon a_minus_b;
         a_minus_b = minkowski_difference(m_A, m_B);
-        
+
         sf::ConvexShape polyMink;
         polyMink.setPointCount(a_minus_b.GetVertexCount());
         for(int k=0; k < a_minus_b.GetVertexCount() ; ++k)
@@ -419,7 +424,7 @@ namespace GJK
         m_Window_Mink.draw(polyMink);
 
 #ifdef _DEBUG
-        
+
         if (hay_interseccion && !paso_a_paso)// si esta intersectando y no esta en modo paso a paso
         {
             if (m_Interseccion.GetVertexCount() == 2)
@@ -444,7 +449,7 @@ namespace GJK
                 m_Window_Mink.draw(polyInt);
             }
         }
-        
+
 #endif
         if( paso_a_paso )// si esta en modo paso a paso
         {

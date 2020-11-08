@@ -32,7 +32,7 @@ namespace GJK
                      this->y - b.y);
     }
 
-    Point Point::operator-() const 
+    Point Point::operator-() const
     {
         return Point(-this->x, -this->y);
     }
@@ -54,7 +54,7 @@ namespace GJK
     }
 
     Real Dot(const Point &a, const Point &b)
-    {	 
+    {
         return (a.x*b.x+a.y*b.y);
     }
 
@@ -97,7 +97,7 @@ namespace GJK
     {
         // XXX La idea es recorrer los puntos y devolver el
         // mayor en la direccion d, ni mas ni menos que eso.
-        // Lineal; se puede hacer un poco mejor haciendo 
+        // Lineal; se puede hacer un poco mejor haciendo
         // hill climbing
 
         // Implementacion naive
@@ -150,12 +150,12 @@ namespace GJK
         {
             planeLine = vertexs[k]-vertexs[k-1];
             z = Cross2D(planeLine, b-vertexs[k-1]);
-            if(z < 0) 
+            if(z < 0)
                 return false;
         }
         planeLine = vertexs.front()-vertexs.back();
         z = Cross2D(planeLine, b-vertexs.back());
-        if(z < 0) 
+        if(z < 0)
             return false;
 
         return true;
@@ -173,7 +173,7 @@ namespace GJK
         }
     }
 
-    void Polygon::Rotate(float angRad, Point& PointOfRotation)
+    void Polygon::Rotate(float angRad, const Point& PointOfRotation)
     {
         // TODO
     }
@@ -188,13 +188,13 @@ namespace GJK
                 break;
             case 2:
                 {
-                const Point& _0a = vertexs[0]; 
+                const Point& _0a = vertexs[0];
                 const Point& _0b = vertexs[1];
                 Point _a0 = -_0a;
                 Point _ab = _0b-_0a;
                 Normalize(_ab);
                 float t = Dot(_a0,_ab);
-                closest = _ab * t + _0a;	//NOTE: it is not indeterminited because 
+                closest = _ab * t + _0a;	//NOTE: it is not indeterminited because
                                             //_ab really is a vector, not a point
                 }
                 break;
@@ -207,7 +207,7 @@ namespace GJK
                 assert(false);
 
         }
-        
+
         return closest;
     }
 
@@ -259,7 +259,7 @@ namespace GJK
              1       4      2
               A *---------* B
                 -    7    |  6
-                 ---      |    
+                 ---      |
                     ------* C
                     5		3	Leyenda:
                                 A      ultimo punto agregado al simplex (ultimo elemento de S)
@@ -296,7 +296,7 @@ namespace GJK
             Normalize(d);//para probar
             return false;
         }
-        
+
         return true;//esta en region 7
     }
 
@@ -335,11 +335,11 @@ namespace GJK
         {
             S.AddVertex( minkowski_difference_support_function(a,b,d) );//agregar punto
 
-            if( Dot( S.GetLast() , d ) <= 0 ) 
+            if( Dot( S.GetLast() , d ) <= 0 )
                 return false; // NO TNTERSECCION - si no pasamos el origen entonces no hay interseccion
             else
             {
-                if( updateSimplex(S,d) ) 
+                if( updateSimplex(S,d) )
                 {
 #ifdef _DEBUG
                     interseccion = S;
@@ -364,13 +364,13 @@ namespace GJK
 
         while (true)
         {
-            if( Dot( S.GetLast() , d ) <= 0 ) 
+            if( Dot( S.GetLast() , d ) <= 0 )
             {
                 Estado = NoInterseccion;
                 return false; // NO TNTERSECCION - si no pasamos el origen entonces no hay interseccion
             }else
             {
-                if( updateSimplex(S,d) ) 
+                if( updateSimplex(S,d) )
                 {
                     d = Point(0,0);
                     Estado = Interseccion;
